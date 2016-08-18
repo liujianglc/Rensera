@@ -1,0 +1,122 @@
+/*  Custom CSS */
+body {
+
+	background:#f4f4f4;
+	font-family: 'Roboto', Arial;
+}
+
+
+
+input[type="text"] {
+	height:24px;
+	min-width:908px;
+	width:908px;
+	border:none;
+	background:#fff;
+	padding-left:12px;
+	font-size:11px;
+}
+
+input[type="checkbox"] {
+	display:none;
+}
+
+label:before {
+
+	content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+ 
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #aaa;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+}
+	
+p>label {
+	font-size:16px;
+}
+
+.cke_article-body, .cke_textarea_inline  {
+	border:none !important;
+	background:#fff !important;
+	min-width:920px;
+	width:920px;
+	margin-top:47px;
+}
+
+#cke_article-body {
+	display:block !important;
+	position:relative;
+	top:-470px; /* adjust this if you add content */
+	box-shadow:none !important;
+	width:908px !important;
+	min-width:908px !important;
+	
+}
+
+ .cke_top {
+	width:908px !important;
+	min-width:908px !important;
+	border:none !important;
+	border-bottom:none !important;
+		border-top:none !important;
+			border-left:none !important;
+				border-right:none !important;
+	background:#fff !important;
+	box-shadow:none !important;
+}
+
+select {
+	border:none;
+	background:#fff;
+	height:24px;
+		padding-left:12px;
+}
+
+p.monthyear {
+
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    flex-flow: row;
+    flex-direction: row;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+
+}
+
+p.monthyear>select:nth-child(4) {
+	margin-left:10px;
+}
+
+.button {
+	background:#0071e4;
+	color:#fff;
+	border:0px;
+	min-height:66px;
+	max-height:66px;
+	height:66px;
+	min-width:110px;
+	font-size:20px;
+	padding-left:20px;
+	padding-right:20px;
+	font-family: 'Roboto', Arial;
+	font-weight:300;
+}
+
+p.center {
+	width:100%;
+	text-align:center;
+}
+
+p.center > .button{
+	margin-left:10px;
+}

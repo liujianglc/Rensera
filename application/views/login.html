@@ -1,0 +1,41 @@
+<{extends file="layouts/empty_layout.html" }>
+    <{block name="body" }>
+        <form action="" method="post" accept-charset="utf-8">
+            <table class="table " style="margin-top:100px;width:500px;">
+                <tr>
+                    <td colspan="3 text-center">
+                        <h1>N2 Login</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="userid">User ID</label>
+                    </td>
+                    <td>
+                        <input type="text" name="userid" value="" id="userid" maxlength="80" size="30" class="input" />
+                    </td>
+                    <td style="color: red;"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password</label>
+                    </td>
+                    <td>
+                        <input type="password" name="password" value="" id="password" size="30" class="input" />
+                    </td>
+                    <td style="color: red;"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input type="checkbox" name="remember" value="1" id="remember" style="margin:0;padding:0" />
+                        <label for="remember">Remember me</label>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" name="submit" value="Login" class="bg-main button" />
+        </form>
+        <{/block}>

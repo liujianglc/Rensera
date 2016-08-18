@@ -1,0 +1,227 @@
+.month-boxes .team {
+	width: 90%;
+	display: block;
+	bottom: 0;
+	margin-top: 180px;
+	text-align: center;
+	padding: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-family: "Helvetica Neue", "Helvetica", Sans-Serif;
+}
+
+.month-boxes .team strong {
+	font-size: 15px;
+	font-style: italic;
+}
+.month-boxes .team p {
+	font-size: 15px;
+}
+.month-boxes .team p,
+.month-boxes .team strong {
+	color: #555;
+	font-family: "Helvetica Neue", "Helvetica", Sans-Serif;
+}
+
+.asider {
+	width: 989px;
+	margin-top: -10px;
+	margin-left: 30px;
+	float: left;
+}
+
+.job-annotation {
+	float: left;
+	background-color: #eee;
+	width: 90%;
+	transition: 0.5s ease all;
+}
+
+.job-annotation.changed {
+	width: 70%
+}
+
+.job-annotation.changed .wrapper {
+	transition: 0.2s ease all;
+	width: 90%
+}
+
+.job-annotation .wrapper {
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+.job-annotation .ad-header {
+	background-color: #929292;
+	color: #fff;
+	padding: 15px 25px;
+	text-transform: uppercase;
+}
+
+.job-annotation .ad-header a {
+	color: #fff;
+}
+
+.job-annotation .ad-header a.more {
+	background-repeat: no-repeat;
+	padding-right: 18px;
+	background-position: center right;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAACVBMVEUAAACSkpL///9v/CXFAAAAGUlEQVR4AWNgBAEmJiYwTTaPCRng41HHPgBVUADv6dvNHgAAAABJRU5ErkJggg==);
+}
+
+.job-annotation .ad-body {
+	background-color: #fff;
+	padding: 15px 25px;
+	margin-bottom: 30px;
+}
+.job-annotation .ad-body p {
+	color: #555;
+	font-size: 16px;
+	border-bottom: 2px solid #ddd;
+	padding-top: 5px;
+	padding-bottom: 8px;
+	margin-top: 5px;
+	margin-bottom: 4px;
+}
+
+.job-annotation .ad-body p.text-ad-body {
+	border: 0;
+	font-size: 11px;
+	font-style: italic;
+	margin: 0;
+	padding: 0 0 5px 0;
+	font-weight: normal;
+}
+
+.job-annotation .ad-body p.text-ad-body span {
+	font-weight: normal;
+	display: inline-block;
+	width: 72%;
+}
+
+.job-annotation .ad-body p.nothing {
+	border: 0;
+	text-align: center;
+	padding-top: 45px;
+	padding-bottom: 45px;
+	font-size: 22px;
+	font-weight: 300;
+}
+
+.no-border {
+	border: 0 !important;
+}
+
+.job-annotation .advice input[type=button].submit.blue.green {
+	background-color: #0c9d58 !important;
+}
+.job-annotation .advice input[type=button].submit.blue {
+	width: 60%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.job-annotation .advice h3 {
+	text-align: center;
+	font-weight: 300;
+	line-height: 30px;
+	padding-bottom: 20px;
+}
+
+.job-annotation a.cancel {
+	text-align: center;
+	width: 100%;
+	display: block;
+	margin-top: 10px;
+	color: #333;
+	margin-bottom: 73px;
+}
+
+.job-annotation .ad-body p span {
+	display: inline-block;
+	width: 150px;
+	font-weight: bold;
+}
+
+input[type=button].submit.blue {
+    width: 95%;
+    color: #fff;
+    border: 0;
+    background-color: #0071e5;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    font: 300 26px "Helvetica Neue","Helvetica","Liberation Sans",Sans-serif;
+    text-transform: capitalize;
+}
+
+.recent-activity {
+	float: right;
+	width: 10%;
+	background-color: #929292;
+	height: 850px;
+	transition: 0.5s ease all;
+}
+
+.recent-activity p,
+.recent-activity h3 {
+	display: none;
+}
+
+.recent-activity.changed {
+	width: 30%
+}
+
+.recent-activity.changed h3 {
+	color: #fff;
+	padding-bottom: 20px;
+	font-size: 20px;
+	margin-top: 40px;
+}
+.recent-activity.changed h3,
+.recent-activity.changed p {
+	width: 70%;
+	margin-left: 20%;
+}
+
+.recent-activity.changed p {
+	font-size: 11px;
+	font-style: italic;
+	margin-bottom: 5px;
+	color: #ccc;
+}
+.recent-activity.changed p.white {
+	color: #fff;
+	padding-bottom: 30px;
+}
+
+.recent-activity .action {
+	width: 29px;
+	height: 18px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	background: url(../img/bars-jony-ive.png) center center no-repeat;
+}
+
+.recent-activity.changed .action {
+	background: url(../img/times_2px.png) center center no-repeat;
+	float: left;
+	margin-left: 10px;
+}
+
+.available_assets h3 {
+	font-weight: 300;
+}
+.available_assets  .list-unstyled {
+	margin-top: 50px;
+}
+.available_assets  .list-unstyled li {
+	background: url(/assets/img/checkbox_sprite_blank.png) no-repeat 0 0 scroll;
+	padding: 2px 0 2px 0;
+	text-indent: 30px;
+	margin-bottom: 5px;
+}
