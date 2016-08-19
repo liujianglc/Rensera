@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends MY_Controller
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class user extends MY_Controller
 {
     public function __construct()
     {
@@ -9,25 +10,27 @@ class User extends MY_Controller
 
         $this->load->helper(array(
             'form',
-            'url'
+            'url',
         ));
         $this->load->library('form_validation');
         $this->load->library('n2_auth');
         $this->lang->load('n2_auth');
     }
 
-    public function index() {
+    public function index()
+    {
         $this->stencil->paint('user_index_view');
     }
 
-    public function initUsers() {
+    public function initUsers()
+    {
         $data = array();
         $data['name'] = 'Marketing Admin';
         $data['email'] = 'admin@rensera.com';
         $data['password'] = '123456';
         $data['role_id'] = 1;
         $data['created_at'] = date('Y-m-d H:i:s');
-        $data['status'] =1;
+        $data['status'] = 1;
         $this->n2_auth->register($data);
 
         $data = array();
@@ -36,7 +39,7 @@ class User extends MY_Controller
         $data['password'] = '123456';
         $data['role_id'] = 2;
         $data['created_at'] = date('Y-m-d H:i:s');
-        $data['status'] =1;
+        $data['status'] = 1;
         $this->n2_auth->register($data);
 
         $data = array();
@@ -45,7 +48,7 @@ class User extends MY_Controller
         $data['password'] = '123456';
         $data['role_id'] = 3;
         $data['created_at'] = date('Y-m-d H:i:s');
-        $data['status'] =1;
+        $data['status'] = 1;
         $this->n2_auth->register($data);
     }
     public function login()
@@ -67,11 +70,11 @@ class User extends MY_Controller
                 } else {
                     $errors = $this->n2_auth->get_error_message();
                     if (isset($errors['banned'])) { // banned user
-                        $this->_show_message($this->lang->line('auth_message_banned') . ' ' . $errors['banned']);
-
+                        $this->_show_message($this->lang->line('auth_message_banned').' '.$errors['banned']);
                     } else { // fail
-                        foreach ($errors as $k => $v)
+                        foreach ($errors as $k => $v) {
                             $data['errors'][$k] = $this->lang->line($v);
+                        }
                     }
                 }
             }
@@ -80,14 +83,14 @@ class User extends MY_Controller
         }
     }
 
-    function logout()
+    public function logout()
     {
         $this->n2_auth->logout();
 
         $this->_show_message($this->lang->line('auth_message_logged_out'));
     }
 
-    function _show_message($message)
+    public function _show_message($message)
     {
         $this->session->set_flashdata('message', $message);
         redirect('/home/index');
