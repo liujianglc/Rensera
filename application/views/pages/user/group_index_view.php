@@ -1,13 +1,13 @@
 <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="/project/index">Project</a></li>
-  <li class="active">Category index</li>
+  <li class="active">Group index</li>
 </ol>
-<form action="/project/create_categories<?php if (isset($category)) {
-    echo '/'.$category['id'];
+<form action="/user/group_index<?php if (isset($group)) {
+    echo '/'.$group['id'];
 } ?>" method="post">
-  <input type="hidden" name="id" value="<?php if (isset($category)) {
-    echo $category['id'];
+  <input type="hidden" name="id" value="<?php if (isset($group)) {
+    echo $group['id'];
 } ?>"/>
 <div class="row">
 
@@ -15,7 +15,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">
-          Create Category
+          Create Group
         </div>
       </div>
       <div class="panel-body">
@@ -23,12 +23,12 @@
           <?php echo validation_errors(); ?>
         </div>
         <div class="form-group">
-          <label for="inputEmail" class="">Category Name</label>
-          <input type="text" name="category_name" id="inputEmail" class="form-control" value="<?php if (isset($category)) {
-    echo $category['name'];
+          <label for="inputEmail" class="">Group Name</label>
+          <input type="text" name="name" id="inputEmail" class="form-control" value="<?php if (isset($group)) {
+    echo $group['name'];
 } else {
-    echo set_value('category_name');
-} ?>" placeholder="Category Name" required autofocus>
+    echo set_value('name');
+} ?>" placeholder="Name" required autofocus>
         </div>
         <div class="form-group">
           <input type="submit" class="btn btn-primary" value="Submit" />
@@ -45,15 +45,16 @@
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($categories as $c) {
+        <?php foreach ($groups as $c) {
     ?>
         <tr>
           <td>
             <?php echo $c['name']; ?>
           </td>
           <td>
-            <a href="/project/create_categories/<?php echo $c['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Edit</a>&nbsp;&nbsp;
-            <a href="/project/remove_category/<?php echo $c['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Remove</a>
+            <a href="/user/group_index/<?php echo $c['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i> Edit</a>&nbsp;&nbsp;
+            <a href="/user/assign/<?php echo $c['id']; ?>" class="btn btn-info btn-xs">Assign Users</a>&nbsp;&nbsp;
+            <a href="/user/remove_group/<?php echo $c['id']; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Remove</a>
           </td>
         </tr>
         <?php

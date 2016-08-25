@@ -15,13 +15,63 @@ class user extends MY_Controller
         $this->load->library('form_validation');
         $this->load->library('n2_auth');
         $this->lang->load('n2_auth');
+        $this->load->model('Group_Model', 'gm');
+        $this->load->model('Users', 'um');
     }
 
+    public function do_assign()
+    {
+        $user_id = $this->input->post('user_id');
+        $group_id = $this->input->post('group_id');
+
+        $result = $this->gm->assign($user_id, $group_id);
+        echo $result;
+    }
+    public function assign($id)
+    {
+        $this->stencil->data('id', $id);
+        $group = $this->gm->load_group($id);
+        $this->stencil->data('group', $group);
+
+        $result = $this->um->load_users();
+        $this->stencil->data('users', $result);
+        $this->stencil->paint('user/assign_view');
+    }
     public function index()
     {
         $this->stencil->paint('user_index_view');
     }
 
+    public function group_index($id = false)
+    {
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        //$this->form_validation->set_rules('name', 'Name', 'callback_category_name_check');
+        $data['errors'] = array();
+
+        $result = $this->gm->load_groups();
+        $this->stencil->data('groups', $result);
+
+        if ($id) {
+            $group = $this->gm->load_group($id);
+            $this->stencil->data('group', $group);
+        }
+        if ($this->form_validation->run()) {
+            $data = array();
+            $data['id'] = $this->input->post('id');
+            $data['name'] = $this->input->post('name');
+            $this->gm->create($data);
+          //print_r($data);
+            redirect('/user/group_index');
+        }
+
+        $this->stencil->paint('user/group_index_view');
+    }
+
+    public function remove_group($id)
+    {
+        $this->gm->delete($id);
+        redirect('/user/group_index');
+    }
     public function initUsers()
     {
         $data = array();
@@ -79,7 +129,7 @@ class user extends MY_Controller
                 }
             }
             $this->stencil->slice('head');
-            $this->stencil->paint('login_view');
+            $this->stencil->paint('user/login_view');
         }
     }
 

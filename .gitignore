@@ -45,3 +45,9 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.zip
+uploads/project/1.png
+uploads/project/0.png
+application/logs/log-2016-08-23.php
+application/logs/log-2016-08-24.php
+application/logs/log-2016-08-25.php

@@ -30,7 +30,8 @@ class project extends MY_Controller
             $data = array();
             $data['id'] = $this->input->post('id');
             $data['name'] = $this->input->post('category_name');
-            $this->cm->create_category($data);
+            $this->cm->create($data);
+            //print_r($data);
             redirect('/project/create_categories');
         }
         $this->stencil->paint('project/create_categories_view');
@@ -77,8 +78,34 @@ class project extends MY_Controller
             $data['name'] = $this->input->post('name');
             $data['category_id'] = $this->input->post('category');
             $data['template_id'] = $this->input->post('template');
-            $this->pm->create($data);
-            redirect('/project/my');
+            $id = $this->pm->create($data);
+
+            $config = array();
+            $config['upload_path'] = './uploads/project/';
+            $config['allowed_types'] = 'png|gif|jpg';
+            $config['max_size'] = '0';
+            $config['max_width'] = '0';
+            $config['max_height'] = '0';
+
+            $this->load->library('upload', $config);
+
+            $have_upload_error = false;
+            if (!$this->upload->do_upload('thumbnail')) {
+                $error = $this->upload->display_errors();
+                $have_upload_error = true;
+            } else {
+                $upload_data = $this->upload->data();
+                //print_r($upload_data);
+
+                $data = array();
+                $data['id'] = $id;
+                $root = str_replace('\\', '/', FCPATH);
+                $data['thumbnail'] = str_replace($root, '/', $upload_data['full_path']);
+                $this->pm->create($data);
+            }
+            //if (!$have_upload_error) {
+                redirect('/project/index');
+            //}
         }
         $this->stencil->paint('project/create_view');
     }
@@ -101,12 +128,19 @@ class project extends MY_Controller
         $this->stencil->paint('project/assign_view');
     }
 
-    public function my()
+    public function index($sort_by = 'desc', $cate_ids = false)
     {
+        $category_ids = array();
+        if ($cate_ids) {
+            $category_ids = explode('_', $cate_ids);
+        }
+        $this->stencil->data('category_ids', $category_ids);
+        $this->stencil->data('sort_by', $sort_by);
+
         $categories = $this->cm->load_categories();
         $this->stencil->data('categories', $categories);
 
-        $projects = $this->pm->load_projects();
+        $projects = $this->pm->load_projects($sort_by, $category_ids);
         $this->stencil->data('projects', $projects);
         $this->stencil->paint('project/my_view');
     }

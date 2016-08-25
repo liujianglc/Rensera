@@ -42,10 +42,16 @@ class Project_model extends CI_Model
         return $query->num_rows() > 0 ? true : false;
     }
 
-    public function load_projects()
+    public function load_projects($sort_by = false, $category_ids = false)
     {
         $this->db->select('*');
         $this->db->from($this->table_name);
+        if ($category_ids) {
+            $this->db->where_in('category_id', $category_ids);
+        }
+        if ($sort_by) {
+            $this->db->order_by('name', $sort_by);
+        }
         $query = $this->db->get();
 
         return $query->result_array();

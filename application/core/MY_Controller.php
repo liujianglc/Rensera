@@ -41,23 +41,27 @@ class MY_Controller extends CI_Controller
         $this->stencil->data('method', $this->router->method);
         $navs = array();
         if ($this->n2_auth->get_role_id() == 1) {
-            $item = array('label' => 'Marketing User Manager', 'url' => '#', 'active' => '0');
-            $item['sub_navs'] = array();
-            $item['sub_navs'][] = array('label' => 'Manage Marketing Users', 'url' => '/user/index', 'active' => 0);
-            $item['sub_navs'][] = array('label' => 'Assign Projects to Users', 'url' => '/project/assign', 'active' => 0);
-            $item['sub_navs'][] = array('label' => 'Create Categories', 'url' => '/project/create_categories', 'active' => 0);
+            $navs[] = array('label' => 'Group Management', 'url' => '/user/group_index', 'active' => '0');
+            /*$item['sub_navs'] = array();
+            //$item['sub_navs'][] = array('label' => 'Manage Marketing Users', 'url' => '/user/index', 'active' => 0);
+            $item['sub_navs'][] = array('label' => 'Manage Groups', 'url' => '/user/group_index', 'active' => 0);
+            $item['sub_navs'][] = array('label' => 'Assign Marketing Agents to Group', 'url' => '/user/assign_group', 'active' => 0);
             $navs[] = $item;
-
-            $item = array('label' => 'Template Manager', 'url' => '#', 'active' => '0');
-            $item['sub_navs'] = array();
+*/
+            $navs[] = array('label' => 'Template Management', 'url' => '/template/index', 'active' => '0');
+            /*$item['sub_navs'] = array();
             $item['sub_navs'][] = array('label' => 'Manage Templates', 'url' => '/template/index', 'active' => 0);
             $item['sub_navs'][] = array('label' => 'Create Template', 'url' => '/template/create', 'active' => 0);
-            $navs[] = $item;
-            $navs[] = array('label' => 'My Projects Pages', 'url' => '/project/my', 'active' => '0');
+            $navs[] = $item;*/
+            $navs[] = array('label' => 'Projects Management', 'url' => '/project/index', 'active' => '0');
+            $item['sub_navs'] = array();
+            $item['sub_navs'][] = array('label' => 'My Projects', 'url' => '/project/index', 'active' => 0);
+            $item['sub_navs'][] = array('label' => 'Create Categories', 'url' => '/project/create_categories', 'active' => 0);
+            //$navs[] = $item;
         } elseif ($this->n2_auth->get_role_id() == 2) {
-            $navs[] = array('label' => 'My Projects Pages', 'url' => '/project/my', 'active' => '0');
+            $navs[] = array('label' => 'My Projects Pages', 'url' => '/project/index', 'active' => '0');
         } else {
-            $navs[] = array('label' => 'My Projects Pages', 'url' => '/project/my', 'active' => '0');
+            $navs[] = array('label' => 'My Projects Pages', 'url' => '/project/index', 'active' => '0');
         }
 
         $this->stencil->data('navs', $navs);

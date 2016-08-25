@@ -3,9 +3,9 @@
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Category_model extends CI_Model
+class Template_Version_model extends CI_Model
 {
-    private $table_name = 'category';
+    private $table_name = 'template_version';
 
     public function __construct()
     {
@@ -15,7 +15,7 @@ class Category_model extends CI_Model
 
     public function create($data)
     {
-        if (isset($data['id']) and $data['id']) {
+        if (isset($data['id'])) {
             $data['updated_at'] = date('Y-m-d H:i:s');
 
             $this->db->where('id', $data['id']);
@@ -30,35 +30,15 @@ class Category_model extends CI_Model
         }
     }
 
-    public function check_name($name, $id = false)
+    public function get_template_vesion($template_id)
     {
         $this->db->select('*');
         $this->db->from($this->table_name);
-        $this->db->where('name', $name);
-        if ($id) {
-            $this->db->where('id !=', $id);
-        }
+        $this->db->where('template_id', $template_id);
         $query = $this->db->get();
+        $result = $query->result_array();
 
-        return $query->num_rows() > 0 ? true : false;
-    }
-    public function load_categories()
-    {
-        $this->db->select('*');
-        $this->db->from($this->table_name);
-        $query = $this->db->get();
-
-        return $query->result_array();
-    }
-
-    public function load_category($id)
-    {
-        $this->db->select('*');
-        $this->db->from($this->table_name);
-        $this->db->where('id', $id);
-        $query = $this->db->get();
-
-        return $query->row_array();
+        return $result;
     }
 
     public function delete($id)

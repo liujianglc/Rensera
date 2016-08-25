@@ -3,46 +3,54 @@
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Category_model extends CI_Model
+class Group_model extends CI_Model
 {
-    private $table_name = 'category';
+    private $table_name = 'group';
 
     public function __construct()
     {
-        // Call the CI_Model constructor
         parent::__construct();
     }
 
     public function create($data)
     {
         if (isset($data['id']) and $data['id']) {
-            $data['updated_at'] = date('Y-m-d H:i:s');
-
             $this->db->where('id', $data['id']);
             $this->db->update($this->table_name, $data);
 
             return $data['id'];
         } else {
-            $data['created_at'] = date('Y-m-d H:i:s');
             $this->db->insert($this->table_name, $data);
 
             return ($this->db->affected_rows() == 1) ? $this->db->insert_id() : false;
         }
     }
 
-    public function check_name($name, $id = false)
+    public function assign($user_id, $group_id)
     {
         $this->db->select('*');
-        $this->db->from($this->table_name);
-        $this->db->where('name', $name);
-        if ($id) {
-            $this->db->where('id !=', $id);
-        }
+        $this->db->from('user_group');
+        $this->db->where('user_id', $user_id);
+        $this->db->where('group_id', $group_id);
         $query = $this->db->get();
+        $result = $query->result_array();
+        //print_r($result);
+        $checked = false;
+        if ($result) {
+            $this->db->where('user_id', $user_id);
+            $this->db->where('group_id', $group_id);
+            $this->db->delete('user_group');
+        } else {
+            $data = array();
+            $data['user_id'] = $user_id;
+            $data['group_id'] = $group_id;
+            $this->db->insert('user_group', $data);
+            $checked = true;
+        }
 
-        return $query->num_rows() > 0 ? true : false;
+        return $checked;
     }
-    public function load_categories()
+    public function load_groups()
     {
         $this->db->select('*');
         $this->db->from($this->table_name);
@@ -51,7 +59,7 @@ class Category_model extends CI_Model
         return $query->result_array();
     }
 
-    public function load_category($id)
+    public function load_group($id)
     {
         $this->db->select('*');
         $this->db->from($this->table_name);

@@ -1,6 +1,11 @@
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="/project/index">Project</a></li>
+  <li class="active"><?php echo (isset($project)) ? 'Edit' : 'Create'; ?></li>
+</ol>
 <form name="" action="/project/create<?php if (isset($project)) {
     echo '/'.$project['id'];
-} ?>" method="post">
+} ?>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php if (isset($project)) {
     echo $project['id'];
 } ?>" />
@@ -61,6 +66,13 @@
         <div class="form-group">
             <lable for="">Thumbnail</lable>
             <input type="file" name="thumbnail" />
+            <br/>
+            <?php if (isset($project) and $project['thumbnail']) {
+    ?>
+            <img src="<?php echo $project['thumbnail']; ?>" style="height:100px"/>
+            <?php
+
+} ?>
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Submit" />
